@@ -1,0 +1,27 @@
+const config = {
+  mongodb: {
+    host: 'localhost',
+    port: 27017,
+    database: '[mongodb_database]',
+  },
+  firebase: {
+    databaseUrl: 'https://[project].firebaseio.com',
+    serviceAccount: './[service-account-key].json',
+  },
+  databases: [
+    {
+      path: 'orders',
+      collection: 'orders',
+      parser: (data) => {
+        const doc = data;
+        doc.createDate = new Date();
+        return doc;
+      },
+    },
+    {
+      path: 'carts',
+      collection: 'carts',
+    },
+  ],
+};
+export default config;
