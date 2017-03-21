@@ -7,12 +7,17 @@ Firebase Real-time database to mongoDB adapter, inspired by [Flashlight](https:/
 **fireleaves** is useful for backend application, it's use mongoDB featureds for search, summary report and other things that you want to do on backend and firebase is difficult to do.
 
 # Features
+
+### 0.0.2
+ - supported queue for large data, using [kue](https://github.com/Automattic/kue) and redis
+
+### 0.0.1
 - monitor firebase realtime database and index to mongodb
 - parser data before index to mongodb
-- more is coming..
 
 # Getting Started
-- Install and run [mongoDB](https://www.mongodb.com/)
+- Install and run [MongoDB](https://www.mongodb.com/)
+- Install and run [Redis](https://redis.io/)
 - `git clone https://github.com/pguyson/fireleaves --depth=1`
 - `npm -g install gulp`
 - `npm install`

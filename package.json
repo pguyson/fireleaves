@@ -1,6 +1,6 @@
 {
   "name": "fireleaves",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "firebase to mongodb",
   "main": "app.js",
   "scripts": {
