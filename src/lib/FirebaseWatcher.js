@@ -16,7 +16,7 @@ const initialData = Symbol('initialData');
 const initialQueueProcess = Symbol('initialQueueProcess');
 const getName = Symbol('getName');
 const docParse = Symbol('docParse');
-const queue = kue.createQueue();
+const queue = kue.createQueue(config.kue);
 class FirebaseWatcher {
   constructor(database) {
     this.database = database;
