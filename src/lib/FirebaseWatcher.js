@@ -57,7 +57,7 @@ class FirebaseWatcher {
       console.log(chalk.cyan(`added ${this[getName](this.database, data.key)}`));
       const doc = this[docParse](data);
       const job = queue.create(ADDED_JOB, { document: doc, collection: this.database.collection })
-        .attempts(JOB_ATTEMPTS).save((err) => {
+        .attempts(JOB_ATTEMPTS).removeOnComplete(true).save((err) => {
           if (err) {
             console.log(chalk.red(`[job] create error ${err}`));
           }
@@ -68,7 +68,7 @@ class FirebaseWatcher {
       console.log(chalk.magenta(`updated ${this[getName](this.database, data.key)}`));
       const doc = this[docParse](data);
       const job = queue.create(CHANGED_JOB, { document: doc, collection: this.database.collection })
-        .attempts(JOB_ATTEMPTS).save((err) => {
+        .attempts(JOB_ATTEMPTS).removeOnComplete(true).save((err) => {
           if (err) {
             console.log(chalk.red(`[job] create error ${err}`));
           }
@@ -79,7 +79,7 @@ class FirebaseWatcher {
       console.log(chalk.red(`removed ${this[getName](this.database, data.key)}`));
       const doc = this[docParse](data);
       const job = queue.create(REMOVED_JOB, { document: doc, collection: this.database.collection })
-        .attempts(JOB_ATTEMPTS).save((err) => {
+        .attempts(JOB_ATTEMPTS).removeOnComplete(true).save((err) => {
           if (err) {
             console.log(chalk.red(`[job] create error ${err}`));
           }
@@ -93,7 +93,7 @@ class FirebaseWatcher {
   [docParse](data) {
     let doc = data.val();
     if (this.database.parser !== undefined && typeof this.database.parser === 'function') {
-      doc = this.database.parser(doc);
+      doc = this.database.parser(doc, data.key);
     }
     doc.fbKey = data.key;
     doc.fireTime = new Date();
